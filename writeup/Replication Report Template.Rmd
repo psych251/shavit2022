@@ -1,6 +1,6 @@
 ---
-title: "Replication of Study X by Sample & Sample (200x, Psychological Science)"
-author: "Replication Author[s] (contact information)"
+title: "Replication of Study by Shavit et al. (2022, Work, Aging, and Retirement)"
+author: "Enna Chen (ennachen@stanford.edu)"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document:
@@ -14,8 +14,33 @@ output:
 
 ##Introduction
 
-[No abstract is needed.]  Each replication project will have a straightforward, no frills report of the study and results.  These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole.  Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection.  Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information.  It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense.  
+R Script Instruction: [No abstract is needed.]  Each replication project will have a straightforward, no frills report of the study and results.  These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole.  Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection.  Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information.  It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense.  
 
+Canvas Instruction: The introduction section will be slightly different if you are doing a reproducibility project; please complete everything under the Introduction heading of the reproducibility project template.
+
+### The original study
+This study examined how time horizon (unspecified, expanded, or constrained) influence the motivation (demonstrated by choice from three work-related activities) of older and younger workers (age measured as a continuous variable).
+
+### Justification
+Canvas Instruction: A short justification for your choice of experiment in terms of your research interests or research program (1 paragraph). This justification should tell us why you chose this particular result – this section is especially important if you are choosing a result outside of the standard Prolific/Psych Sci model.
+
+This paper is the latest publication (July 2022) from my lab that I am really intrigued by. It is along my line of research -- age, motivation, and prosociality. Additionally, it has a similar type of design as my intended first-year project (also potentially a life-span sample divided into three experimental conditions). I have never conducted a study with this type of design, so I hope to use this class project to practice for my own data collection and analysis. 
+
+### Stimuli, procedures, challenges
+Canvas Instruction: A description of the stimuli and procedures that will be required to conduct this experiment, and what the challenges will be (1-2 paragraphs).
+
+Participants will first provide background information, which includes age, gender, race, household income, educational level, subjective health, future time perspective (10-item questionnaire), and big five personality (10-item questionnaire). Then, they are randomly assigned to one of three experimental conditions where time horizons at work were unspecified, expanded, or constrained. Each condition includes a brief manipulation prompt, which had been validated in the original study. After reading the prompt, we ask participants in each condition to choose one of three work-related activities, each of which represent pursuit of a different type of goal. 
+
+I think this may be a 10-20 minutes questionnaire. Once I make the Qualtrics survey and find out if it's too long, I can maybe cut some background information. I have never used Prolific and I am not sure if it's easy to recruit older adults there. The original paper has a sample of 555 adults aged 20 to 75 (M = 44.65, SD = 13.2). I hope to be able to recruit a sample that matches with this age distribution. Another challenge is to recruit enough people for the experiment... but I care more about the process of learning than the results! I also have to recruit only people who have a full-time or part-time job. I am not sure if these conditions could be specified in the recruitment material. My main challenge is that I don't know anything about Prolific because I did mostly in-person physio experiments in the past! I am excited to learn though!
+
+### Links
+Canvas Instruction: A link to the repository and to the original paper (as hosted in your repo). The goal is that we should be able to click on these links and review that your repo is formatted right and look at the original paper.
+[Link to my repo](https://github.com/psych251/shavit2022)
+[Link to the original paper](https://github.com/psych251/shavit2022/blob/main/original_paper/original_paper.pdf)
+
+Above is project proposal assignment as of Oct 7, 2022
+-------------------------------------------------
+Below is untouched methods, results, and discussion sections
 
 ##Methods
 
