@@ -115,24 +115,125 @@ You can comment this section out prior to final report with data collection.
 
 Data preparation following the analysis plan.
 	
-```{r include=F}
-###Data Preparation
+```{r Data preparation}
 
-The data preparation will be very straightforward since the final dataset will only have a few columns:
-Age
-Preferred activity: people from both conditions will be asked the same question
-Potential covariates such as gender or SES
+###Data Preparation
 
 ####Load Relevant Libraries and Functions
 
+library(tidyverse)
+library(knitr)
+library(MASS)
+library(nnet)
+library(haven)
+library(car)
+library(psych)
+library(RColorBrewer)
+library(ggsignif)
+library(DescTools)
+library(rcompanion)
+
 ####Import data
+
+#Load and clean data
+setwd("~/Downloads/Psych251")
+psych251data <- read.csv("psych251data.csv", header = TRUE)
+#View(psych251data)
+names(psych251data)
 
 #### Data exclusion / filtering
 
+psych251data <- psych251data[-c(1:2),] #remove first two rows
+psych251data <- psych251data %>% dplyr::select(Unspecified, Expanded, Age, Gender, SESLadder) # Select relevant variables (deleting metadata)
+
 #### Prepare data for analysis - create columns etc.
+
+#Convert all data to numeric
+a <- which(colnames(psych251data)=="Unspecified")
+b <- which(colnames(psych251data)=="SESLadder")
+psych251data <-sapply(psych251data[, c(a:b)], as.numeric)
+
+#Take a look at the data
+psych251data <- as.data.frame(psych251data)
+summary(psych251data$Age)
+is.atomic(psych251data)
+
+#Create a condition column to specify which condition each person is assigned to 
+psych251data %>%
+  mutate(Condition = case_when(
+    Expanded == 1 | Expanded == 2 | Expanded == 3 ~ "Expanded",
+    Unspecified == 1 | Unspecified == 2 | Unspecified == 3 ~ "Unspecified"))
+
+#Combine participants' answers to time horizon questions into one column called Choice, make sure it's a factor 
+psych251data <- gather(psych251data,"Condition", "Choice", c("Unspecified", "Expanded")) %>% filter(!is.na(Choice)) 
+psych251data$Choice <- as.factor(psych251data$Choice)
+psych251data$Choice <- recode(psych251data$Choice, "1" = "colleague/friend", "2" = "new direction", "3" = "advance career")
+
+#Is there sig diff between the number of people in each condition
+conditiontable=table(psych251data$Condition)
+t.test(conditiontable)
+
+#Make sure condition is factor
+psych251data$Condition=as.factor(psych251data$Condition)
+levels(psych251data$Condition)=c("Unspecified", "Expanded")
+
+#Age, gender, SES diff across conditions
+summary(lm(data = psych251data, Age~Condition))
+summary(table(psych251data$Gender,psych251data$Condition))
+summary(lm(data = psych251data, SESLadder~Condition))
+
 ```
 
 ### Confirmatory analysis
+
+```{r Confirmatory analysis}
+
+#Create age group variable
+psych251data <- psych251data %>%
+  mutate(AgeGroup = case_when(
+    Age < 36 | Age == 36 ~ "Young",
+    Age > 36 | Age < 64 ~ "Middle-Aged",
+    Age == 64 | Age > 64 ~ "Older"))
+
+#Create a dataset for each condition to run a chi.sq (condition 1 = expanded, condition 2 = unspecified)
+data_condition1 <- psych251data %>% filter(Condition=="Expanded")
+data_condition2 <- psych251data %>% filter(Condition=="Unspecified")
+
+#Run chi-sq Choice X AgeGroup in each condition
+condition1_table <- table(data_condition1$Choice, data_condition1$AgeGroup)
+condition1_table
+chisq.test(condition1_table)
+chisq.test(condition1_table, simulate.p.value = T, B=5000) 
+
+condition2_table <- table(data_condition2$Choice, data_condition2$AgeGroup)
+condition2_table
+chisq.test(condition2_table)
+chisq.test(condition1_table, simulate.p.value = T, B=5000) 
+
+#TO BE CONSTRUCTED 
+#Run prop.test for percent choosing "help" in each of the conditions
+
+#table(data_condition1$AgeGroup,data_condition1$Choice)
+#n.young=sum(data_condition1$AgeGroup=="Young")
+#n.mid_life=sum(data_condition1$AgeGroup=="Middle-Aged")
+#n.older=sum(data_condition1$AgeGroup=="Older")
+
+#prop.test(x=c(53,22,8), n=c(n.young, n.mid_life, n.older))
+#prop.test(x=c(53,22), n=c(n.mid_life, n.older))
+#prop.test(x=c(22,8), n=c(n.young, n.older))
+#prop.test(x=c(53,8), n=c(n.young, n.mid_life))
+
+#Run multinomial regression looking at the effect of condition alone
+conditioneffect=multinom(data = psych251data, Choice~Condition)
+summary(conditioneffect)
+
+#Get the Z values and p values
+z_values <- summary(conditioneffect)$coefficients/summary(conditioneffect)$standard.errors
+z_values 
+p_values <- (1 - pnorm(abs(z_values), 0, 1)) * 2
+p_values
+
+```
 
 The analyses as specified in the analysis plan.  
 
