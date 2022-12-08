@@ -12,108 +12,88 @@ output:
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
-##Introduction
-
-R Script Instruction: [No abstract is needed.]  Each replication project will have a straightforward, no frills report of the study and results.  These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole.  Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection.  Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information.  It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense.  
-
-Canvas Instruction: The introduction section will be slightly different if you are doing a reproducibility project; please complete everything under the Introduction heading of the reproducibility project template.
+## Introduction
 
 ### The original study
-This study examined how time horizon (unspecified, expanded, or constrained) influence the motivation (demonstrated by choice from three work-related activities) of older and younger workers (age measured as a continuous variable).
+
+This study examined how time horizon (unspecified or expanded) influence the motivation (demonstrated by choice from three work-related activities) of older and younger workers (age measured as a continuous variable).
 
 ### Justification
-Canvas Instruction: A short justification for your choice of experiment in terms of your research interests or research program (1 paragraph). This justification should tell us why you chose this particular result – this section is especially important if you are choosing a result outside of the standard Prolific/Psych Sci model.
 
 This paper is the latest publication (July 2022) from my lab that I am really intrigued by. It is along my line of research -- age, motivation, and prosociality. Additionally, it has a similar type of design as my intended first-year project (also potentially a life-span sample divided into three experimental conditions). I have never conducted a study with this type of design, so I hope to use this class project to practice for my own data collection and analysis. 
 
 ### Stimuli, procedures, challenges
-Canvas Instruction: A description of the stimuli and procedures that will be required to conduct this experiment, and what the challenges will be (1-2 paragraphs).
 
-Participants will first provide background information, which includes age, gender, race, household income, educational level, subjective health, future time perspective (10-item questionnaire), and big five personality (10-item questionnaire). Then, they are randomly assigned to one of three experimental conditions where time horizons at work were unspecified, expanded, or constrained. Each condition includes a brief manipulation prompt, which had been validated in the original study. After reading the prompt, we ask participants in each condition to choose one of three work-related activities, each of which represent pursuit of a different type of goal. 
+Participants will be randomly assigned to one of two experimental conditions where time horizons at work were unspecified or expanded. Each condition includes a brief manipulation prompt, which had been validated in the original study. After reading the prompt, we ask participants in each condition to choose one of three work-related activities, each of which represent pursuit of a different type of goal. In the end, participants will provide information on their age, gender, and subjective socioeconomical status.
 
-I think this may be a 10-20 minutes questionnaire. Once I make the Qualtrics survey and find out if it's too long, I can maybe cut some background information. I have never used Prolific and I am not sure if it's easy to recruit older adults there. The original paper has a sample of 555 adults aged 20 to 75 (M = 44.65, SD = 13.2). I hope to be able to recruit a sample that matches with this age distribution. Another challenge is to recruit enough people for the experiment... but I care more about the process of learning than the results! I also have to recruit only people who have a full-time or part-time job. I am not sure if these conditions could be specified in the recruitment material. My main challenge is that I don't know anything about Prolific because I did mostly in-person physio experiments in the past! I am excited to learn though!
-
-Modification 10/14/22
-
-Participants will be randomly assigned to one of three experimental conditions where time horizons at work were unspecified, expanded, or constrained. Each condition includes a brief manipulation prompt, which had been validated in the original study. After reading the prompt, we ask participants in each condition to choose one of three work-related activities, each of which represent pursuit of a different type of goal. In the end, participants will provide information on their age. 
-
-This would take around 3 minutes. The original paper has a sample of 555 adults aged 20 to 75 (M = 44.65, SD = 13.2). I hope to be able to recruit a sample that matches with this age distribution by creating age buckets on Prolific, but if not, I can also just control for age.
-
-I also have to recruit only people who have a full-time or part-time job. I am not sure if these conditions could be specified in the recruitment material. 
+This Qualtrics survey would take approximately 2 minutes. The original paper has a sample of 555 adults aged 20 to 75 (M = 44.65, SD = 13.2). I will recruit a sample of 170 participants that matches with this age distribution by creating age buckets on Prolific. I will recruit only people who have a full-time. 
 
 ### Links
-Canvas Instruction: A link to the repository and to the original paper (as hosted in your repo). The goal is that we should be able to click on these links and review that your repo is formatted right and look at the original paper.
+
 [Link to my repo](https://github.com/psych251/shavit2022)
 [Link to the original paper](https://github.com/psych251/shavit2022/blob/main/original_paper/original_paper.pdf)
 
-Above is project proposal assignment as of Oct 7, 2022
--------------------------------------------------
-Below is project report assignment as of Oct 23, 2022 
+## Methods
 
-##Methods
+### Power Analysis 
 
-###Power Analysis --- NEXT TIME!!!!!!!
+Original effect size: -.42
+Effect sizes to achieve 80%, 90%, 95% power: 170, 232, 291
+Considering our class funding, I decided to go with the 170 sample size that will achieve 80% power.
 
-Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.
+### Planned Sample
 
-###Planned Sample --- NEED TO ADD SAMPLE SIZE NEXT TIME!!!!!!!
+We will recruit 170 participants relatively evenly distributed from ages 20-75. In the paper, it was 20 to 75 years with a mean of 44.65, and SD of 13.2, and it was similar across conditions. They will all be full-time employees.
 
-Planned sample size and/or termination rule, sampling frame, known demographics if any, preselection rules if any.
+### Materials + Procedure
 
-Participants need to be working full-time or part-time. Participants need to be relatively evenly distributed from ages 20-75. In the paper, it was 20 to 75 years with a mean of 44.65, and SD of 13.2, and it was similar across conditions.
-
-###Materials + Procedure --- NEED TO MAKE PROGRESS ON QUALTRICS NEXT TIME!!!!!!!
-
-All materials - can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article.
-
-Participants first provided background information and were then randomly assigned to one of three experimental conditions where time horizons at work were either unspecified or expanded. In the unspecified condition, participants were asked to imagine that they arrived at work 1 day and found that they had unscheduled time. Participants in the expanded time horizons condition were told that “the company would like you to stay with them considerably longer than you had planned.”
+Participants were randomly assigned to one of two experimental conditions where time horizons at work were either unspecified or expanded. In the unspecified condition, participants were asked to imagine that they arrived at work one day and found that they had unscheduled time. Participants in the expanded time horizons condition were told that “the company would like you to stay with them considerably longer than you had planned.”
 
 After reading the prompt, participants in each condition were asked to choose one of three work-related activities that they would pursue: “Help a colleague or a friend with a company project,” “Work on a project that may help you advance you career,” or “Work on a project that may lead the company in a new direction.” Helping colleagues represented pursuit of emotionally meaningful goals, whereas career-advancing and taking the company in new directions represented pursuit of exploratory goals (future payoffs and learning new information, respectively).
 
-I have obtained the original questionnaire materials from the author, and my Qualtrics questionnaire is in progress: https://stanforduniversity.qualtrics.com/jfe/form/SV_0Utk18jvCwCk61w
+Finally, participants will provide background information - age, gender, subjective socioeconomic status, and employment status.
 
-###Analysis Plan --- NEED TO PILOT QUALTRICS AND SEE IF IT'S SHORT ENOUGH FOR ME TO ADD MORE COVARIATES NEXT TIME!!!!!!!
+I have obtained the original questionnaire materials from the author.
+[Link to my questionnaire](https://stanforduniversity.qualtrics.com/jfe/form/SV_0Utk18jvCwCk61w)
 
-Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.  
+### Analysis Plan
 
-**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+**Clarify key analysis of interest here. You can also pre-specify additional analyses you plan to do.**  
 
-The original paper did not mention data cleaning or exclusion rules. 
+The original paper did not mention data cleaning or exclusion rules. I would double check participants' answers to the age and employment status questions in Qualtrics to make sure to exclude those who are not 20-75 or full-time employees, in case the exclusion requirement from Prolific was not accurate.
 
-The focal tests are the simple effects of age on the likelihood of choosing to help a colleague or a friend over any of the future-oriented options, in each of the two conditions. The original paper estimated the effects of age and time horizons condition using logistic regressions in which the intercept indicates a difference from a chance level of 33%. Although they did not expect to find significant Age x Condition interactions because they were not found in past research, they included them in the model to provide context for understanding the focal tests of age associations with preferences in each of the conditions.
+The original paper included many covariates (e.g., Big Five Personality, Future Time Perspective, etc.). To be mindful of our class funding, I will only include basic demographic information (age, gender, employment status, and subjective socioeconomic status) as covariates.
 
-As a first step, they entered only age, condition, and their interaction term into the model. In a second step, to ensure any observed age effects are not caused by third variables, they included background variables found to be significantly associated with age in the current sample as control variables. To facilitate interpretation, they supplemented this approach with chi-square analysis. 
+Below are my three proposed statistical tests:
 
-In post hoc analyses, they used multinomial regression to examine the likelihood of choosing to help a colleague or a friend over each of the future oriented activities independently. They used this exploratory analysis to better understand age-related preferences for emotionally meaningful activities at work versus either self-advancement or knowledge seeking. Here, too, they first entered age and condition (with their interaction term) into the model, and then followed by including background variables to control for potential confounds. In all models, continuous variables were standardized to facilitate interpretation of model estimates and reflect the “main”
-effect of condition.
+Key test:
+1. The main test focuses on the difference (across ages) in the likelihood of choosing to help colleagues between the unspecified and the expanded time horizon conditions. I will use logistic regression to look at how the likelihood of deciding to help others (vs. exploratory goals) is associated with z-scored age, condition (unspecified vs. expanded time horizons), and their interaction. I will use two logistic regression models, one to set the unspecified time horizon condition as the reference group, and the other one to set the expanded time horizon condition as the reference group. Whether the replication is successful will be determined by whether there is an interaction effect of condition and age.
 
-The original paper included many background variables as covariates. Because of our limited funding, I will probably not include any covariates for now until I test the Qualtrics survey and find out how long it takes.
+Exploratory tests:
+1. Hypothesis 1 states that when time horizons are unspecified, older age is associated with a preference to help others over future-oriented options. Our first exploratory test focuses on the simple effect of age on the likelihood of choosing to help a colleague or a friend over any of the future-oriented options in the unspecified time horizon condition.
+2. Hypothesis 2 states that when time horizons are expanded, age differences in work preferences are eliminated such that across all ages, future oriented options are preferred over helping others. Our second exploratory test focuses on the simple effect of age on the likelihood of choosing to help a colleague or a friend over any of the future-oriented options in the expanded time horizon condition.
 
-###Differences from Original Study
+### Differences from Original Study
 
-Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect.
+The focal tests of the original paper for the three hypotheses are the simple effects of age on the likelihood of choosing to help a colleague or a friend over any of the future-oriented options, in each of the three conditions. Note that in this replication study, we only included two of the three conditions that had the largest effect. 
 
-The sample will be much smaller than the original study.
-I will only include two of the three conditions from the original studies that had the largest effect.
-I will likely not include any covariates or only a few. None of the covariates are theoretically important.
+The original paper estimated the effects of age and time horizons condition using logistic regressions in which the intercept indicates a difference from a chance level of 33%. Although they did not expect to find significant Age x Condition interactions because they were not found in past research, they included them in the model to provide context for understanding the focal tests of age associations with preferences in each of the conditions. 
 
-### Methods Addendum (Post Data Collection) --- NEXT TIME!!!!!!!
+As a first step, they entered only age, condition, and their interaction term into the model. In a second step, to ensure any observed age effects are not caused by third variables, they included background variables found to be significantly associated with age in the current sample as control variables. To facilitate interpretation, they supplemented this approach with chi-square analysis. Because the results did not change after including the control variables, and that none of the covariates are theoretically necessary in this replication study, we will focus on the first step, and include fewer background variables for the second step. 
+
+### Methods Addendum (Post Data Collection) --- TO BE COMPLETED
 
 You can comment this section out prior to final report with data collection.
 
-#### Actual Sample --- NEXT TIME!!!!!!!
+#### Actual Sample --- TO BE COMPLETED
   Sample size, demographics, data exclusions based on rules spelled out in analysis plan
 
-#### Differences from pre-data collection methods plan --- NEXT TIME!!!!!!!
+#### Differences from pre-data collection methods plan --- TO BE COMPLETED
   Any differences from what was described as the original plan, or “none”.
 
-
-##Results
-
+## Results
 
 ### Data preparation
-
-Data preparation following the analysis plan.
 	
 ```{r Data preparation}
 
@@ -132,52 +112,58 @@ library(RColorBrewer)
 library(ggsignif)
 library(DescTools)
 library(rcompanion)
+library(dplyr)
 
-####Import data
+#### Import data
 
-#Load and clean data
-setwd("~/Downloads/Psych251")
+# Load and clean data
+setwd("~/Downloads/Psych251/FinalProject/shavit2022/writeup")
 psych251data <- read.csv("psych251data.csv", header = TRUE)
 #View(psych251data)
 names(psych251data)
 
 #### Data exclusion / filtering
 
-psych251data <- psych251data[-c(1:2),] #remove first two rows
-psych251data <- psych251data %>% dplyr::select(Unspecified, Expanded, Age, Gender, SESLadder) # Select relevant variables (deleting metadata)
+psych251data <- psych251data[-c(1:2),] # Remove first two rows
+psych251data <- psych251data %>% dplyr::select(ResponseId, Unspecified, Expanded, Age, Gender, Employment, SESLadder) # Select relevant variables (deleting metadata)
+
+# Make sure all data are in an appropriate format 
+psych251data$Unspecified <- as.numeric(psych251data$Unspecified)
+psych251data$Expanded <- as.numeric(psych251data$Expanded)
+psych251data$Age <- as.numeric(psych251data$Age)
+psych251data$Gender <- factor(psych251data$Gender)
+psych251data$Employment <- factor(psych251data$Employment)
+psych251data$SESLadder <- as.numeric(psych251data$SESLadder)
+
+psych251data <- psych251data %>% filter(Employment=="1") %>% filter(Age >= 20 & Age <= 75) # We only want people aged 20-75 who are full-time paid employees.
+summary(psych251data$Age)
+summary(psych251data$Employment)
 
 #### Prepare data for analysis - create columns etc.
 
-#Convert all data to numeric
-a <- which(colnames(psych251data)=="Unspecified")
-b <- which(colnames(psych251data)=="SESLadder")
-psych251data <-sapply(psych251data[, c(a:b)], as.numeric)
-
-#Take a look at the data
+# Take a look at the data
 psych251data <- as.data.frame(psych251data)
-summary(psych251data$Age)
-is.atomic(psych251data)
 
-#Create a condition column to specify which condition each person is assigned to 
-psych251data %>%
+# Create a condition column to specify which condition each person is assigned to 
+psych251data <- psych251data %>%
   mutate(Condition = case_when(
     Expanded == 1 | Expanded == 2 | Expanded == 3 ~ "Expanded",
     Unspecified == 1 | Unspecified == 2 | Unspecified == 3 ~ "Unspecified"))
 
-#Combine participants' answers to time horizon questions into one column called Choice, make sure it's a factor 
-psych251data <- gather(psych251data,"Condition", "Choice", c("Unspecified", "Expanded")) %>% filter(!is.na(Choice)) 
+# Combine participants' answers to time horizon questions into one column called Choice
+psych251data <- gather(psych251data, "Condition", "Choice", c("Unspecified", "Expanded")) %>% filter(!is.na(Choice))
+
+# Make sure choice and condition are factors 
 psych251data$Choice <- as.factor(psych251data$Choice)
-psych251data$Choice <- recode(psych251data$Choice, "1" = "colleague/friend", "2" = "new direction", "3" = "advance career")
-
-#Is there sig diff between the number of people in each condition
-conditiontable=table(psych251data$Condition)
-t.test(conditiontable)
-
-#Make sure condition is factor
+psych251data$Choice <- dplyr::recode(psych251data$Choice, '1' = "colleague/friend", '2' = "new direction", '3' = "advance career")
 psych251data$Condition=as.factor(psych251data$Condition)
 levels(psych251data$Condition)=c("Unspecified", "Expanded")
 
-#Age, gender, SES diff across conditions
+# Is there sig diff between the number of people in each condition
+conditiontable=table(psych251data$Condition)
+t.test(conditiontable)
+
+# Age, gender, SES diff across conditions
 summary(lm(data = psych251data, Age~Condition))
 summary(table(psych251data$Gender,psych251data$Condition))
 summary(lm(data = psych251data, SESLadder~Condition))
@@ -186,76 +172,101 @@ summary(lm(data = psych251data, SESLadder~Condition))
 
 ### Confirmatory analysis
 
+The analyses as specified in the analysis plan.  
+
 ```{r Confirmatory analysis}
 
-#Create age group variable
-psych251data <- psych251data %>%
-  mutate(AgeGroup = case_when(
-    Age < 36 | Age == 36 ~ "Young",
-    Age > 36 | Age < 64 ~ "Middle-Aged",
-    Age == 64 | Age > 64 ~ "Older"))
+# Create binary variable (that indicates whether the participants choose to help others or not) for logistic regression
+psych251data$Help <- recode (psych251data$Choice, "'colleague/friend'=1; 'advance career'=0; 'new direction'=0; else=NA", as.factor = F, as.numeric = T)
 
-#Create a dataset for each condition to run a chi.sq (condition 1 = expanded, condition 2 = unspecified)
-data_condition1 <- psych251data %>% filter(Condition=="Expanded")
-data_condition2 <- psych251data %>% filter(Condition=="Unspecified")
+# Main analyses: logistic regression - difference between control and expanded time horizon conditions
 
-#Run chi-sq Choice X AgeGroup in each condition
-condition1_table <- table(data_condition1$Choice, data_condition1$AgeGroup)
-condition1_table
-chisq.test(condition1_table)
-chisq.test(condition1_table, simulate.p.value = T, B=5000) 
+# Set offset to reflect that chance success is 33%
+p_help=0.333
+log_odds_help = log(p_help/(1-p_help))
+log_odds_help
 
-condition2_table <- table(data_condition2$Choice, data_condition2$AgeGroup)
-condition2_table
-chisq.test(condition2_table)
-chisq.test(condition1_table, simulate.p.value = T, B=5000) 
+# Difference between conditions (age by condition) with no control variables
+psych251data$Condition <- relevel(psych251data$Condition, ref="Unspecified")
+glm_diff_unspec <- glm(data = psych251data, Help~scale(Age)*Condition, family = "binomial", offset = rep(log_odds_help, length(psych251data$ResponseId)))
+summary(glm_diff_unspec) 
 
-#TO BE CONSTRUCTED 
-#Run prop.test for percent choosing "help" in each of the conditions
+psych251data$Condition <- relevel(psych251data$Condition, ref="Expanded")
+glm_diff_expand <- glm(data = psych251data, Help~scale(Age)*Condition, family = "binomial", offset = rep(log_odds_help, length(psych251data$ResponseId)))
+summary(glm_diff_expand) 
 
-#table(data_condition1$AgeGroup,data_condition1$Choice)
-#n.young=sum(data_condition1$AgeGroup=="Young")
-#n.mid_life=sum(data_condition1$AgeGroup=="Middle-Aged")
-#n.older=sum(data_condition1$AgeGroup=="Older")
+# Difference between conditions (age by condition) with control variables (gender + SES)
+psych251data$Condition <- relevel(psych251data$Condition, ref="Unspecified")
+glm_diff_unspec_ctl <- glm(data = psych251data, Help~scale(Age)*Condition + scale(SESLadder), family = "binomial", offset = rep(log_odds_help, length(psych251data$ResponseId)))
+summary(glm_diff_unspec_ctl) 
 
-#prop.test(x=c(53,22,8), n=c(n.young, n.mid_life, n.older))
-#prop.test(x=c(53,22), n=c(n.mid_life, n.older))
-#prop.test(x=c(22,8), n=c(n.young, n.older))
-#prop.test(x=c(53,8), n=c(n.young, n.mid_life))
-
-#Run multinomial regression looking at the effect of condition alone
-conditioneffect=multinom(data = psych251data, Choice~Condition)
-summary(conditioneffect)
-
-#Get the Z values and p values
-z_values <- summary(conditioneffect)$coefficients/summary(conditioneffect)$standard.errors
-z_values 
-p_values <- (1 - pnorm(abs(z_values), 0, 1)) * 2
-p_values
+psych251data$Condition <- relevel(psych251data$Condition, ref="Expanded")
+glm_diff_expand_ctl <- glm(data = psych251data, Help~scale(Age)*Condition + scale(SESLadder), family = "binomial", offset = rep(log_odds_help, length(psych251data$ResponseId)))
+summary(glm_diff_expand_ctl) 
 
 ```
 
-The analyses as specified in the analysis plan.  
-
 *Side-by-side graph with original graph is ideal here*
 
-The focal tests are the simple effects of age on the likelihood of choosing to help a colleague or a friend over any of the future-oriented options, in each of the two conditions. 
-I will estimate the effects of age and time horizons condition using logistic regressions in which the intercept indicates a difference from a chance level of 33%. 
-As a first step, I will enter only age, condition, and their interaction term into the model. 
-If I have collected any background variables, I will include background variables as control variables. 
+For original graph, see Figure 1 in the original paper: https://github.com/psych251/shavit2022/blob/main/original_paper/original_paper.pdf
 
-For original graph, see Figure 1: https://github.com/psych251/shavit2022/blob/main/original_paper/original_paper.pdf
+Note that in this replication study, we only have unspecified time horizon condition and expanded time horizon condition. We did not include the limited time horizon condition.
 
-###Exploratory analyses
+```{r Graphs}
 
-Any follow-up analyses desired (not required).  
+psych251data$Condition <- relevel(psych251data$Condition, ref="Unspecified")
+psych251data$Condition_Order <- as.factor(psych251data$Condition)
+levels(psych251data$Condition_Order) <- c("Unspecified", "Expanded time")
+levels(psych251data$Condition_Order)
+table(psych251data$Condition_Order)
 
-## Discussion
+ggplot(data=psych251data, aes(x=Age, y=Help)) +
+  geom_point(alpha=0.2, position = position_jitter(height = 0.03)) +
+  geom_smooth(method = "glm", method.args = list(family = "binomial"), color="black") +
+  geom_hline(yintercept = 0.33, linetype="dashed") +
+  ggthemes::theme_few()+labs(y="Likelihood of choosing\n'Help friend / colleague'", x="Age") +
+  facet_grid(.~Condition_Order)
 
-### Summary of Replication Attempt
+```
+
+### Exploratory analyses
+
+```{r Exploratory analyses}
+
+# Exploratory analyses: logistic regression - within control or within expanded time horizon conditions
+
+# Within unspecified condition with no control variables
+
+psych251data_unspec <- psych251data %>% filter(Condition=="Unspecified")
+glm_unspec <- glm(data = psych251data_unspec, Help~scale(Age), family = "binomial", offset = rep(log_odds_help, length(psych251data_unspec$ResponseId)))
+summary(glm_unspec)
+
+# Within expanded condition with no control variables
+
+psych251data_expand <- psych251data %>% filter(Condition=="Expanded")
+glm_expand <- glm(data = psych251data_expand, Help~scale(Age), family = "binomial", offset = rep(log_odds_help, length(psych251data_expand$ResponseId)))
+summary(glm_expand)
+
+# Within unspecified condition with control variable: SES
+
+psych251data_unspec <- psych251data %>% filter(Condition=="Unspecified")
+glm_unspec_ctl <- glm(data = psych251data_unspec, Help~scale(Age) + scale(SESLadder), family = "binomial", offset = rep(log_odds_help, length(psych251data_unspec$ResponseId)))
+summary(glm_unspec_ctl)
+
+# Within expanded condition with control variable: SES
+
+psych251data_expand <- psych251data %>% filter(Condition=="Expanded")
+glm_expand_ctl <- glm(data = psych251data_expand, Help~scale(Age) + scale(SESLadder), family = "binomial", offset = rep(log_odds_help, length(psych251data_expand$ResponseId)))
+summary(glm_expand_ctl)
+
+```
+
+## Discussion --- TO BE COMPLETED
+
+### Summary of Replication Attempt --- TO BE COMPLETED
 
 Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
 
-### Commentary
+### Commentary --- TO BE COMPLETED
 
 Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
