@@ -18,6 +18,8 @@ output:
 
 This study examined how time horizon (unspecified or expanded) influence the motivation (demonstrated by choice from three work-related activities) of older and younger workers (age measured as a continuous variable).
 
+Based on socioemotional selectivity theory (SST), they hypothesized that under unspecified time horizons, older workers prefer to engage in emotionally meaningful work activities more so than younger workers. They further hypothesized that when time horizons at work are expanded or limited, age differences are eliminated. Consistent with SST postulates, they found that age was associated with preferences for helping colleagues in the unspecified horizons condition, and that age differences were eliminated when time horizons were extended or limited. As hypothesized, expanding time horizons reduced employees’ likelihood of choosing to help colleagues. Contrary to their hypothesis, limiting time horizons also reduced the likelihood of choosing to help colleagues. 
+
 ### Justification
 
 This paper is the latest publication (July 2022) from my lab that I am really intrigued by. It is along my line of research -- age, motivation, and prosociality. Additionally, it has a similar type of design as my intended first-year project (also potentially a life-span sample divided into three experimental conditions). I have never conducted a study with this type of design, so I hope to use this class project to practice for my own data collection and analysis. 
@@ -32,12 +34,17 @@ This Qualtrics survey would take approximately 2 minutes. The original paper has
 
 [Link to my repo](https://github.com/psych251/shavit2022)
 [Link to the original paper](https://github.com/psych251/shavit2022/blob/main/original_paper/original_paper.pdf)
+[Link to my pre-registration](https://osf.io/86p4e/)
 
 ## Methods
 
 ### Power Analysis 
 
+I used z-tests: logistic regression - a priori power analysis. 
 Original effect size: -.42
+Odds ratio: 0.657
+Pr H0: 0.33
+alpha probability: 0.05
 Effect sizes to achieve 80%, 90%, 95% power: 170, 232, 291
 Considering our class funding, I decided to go with the 170 sample size that will achieve 80% power.
 
@@ -81,15 +88,17 @@ The original paper estimated the effects of age and time horizons condition usin
 
 As a first step, they entered only age, condition, and their interaction term into the model. In a second step, to ensure any observed age effects are not caused by third variables, they included background variables found to be significantly associated with age in the current sample as control variables. To facilitate interpretation, they supplemented this approach with chi-square analysis. Because the results did not change after including the control variables, and that none of the covariates are theoretically necessary in this replication study, we will focus on the first step, and include fewer background variables for the second step. 
 
-### Methods Addendum (Post Data Collection) --- TO BE COMPLETED
+### Methods Addendum (Post Data Collection)
 
-You can comment this section out prior to final report with data collection.
+#### Actual Sample
 
-#### Actual Sample --- TO BE COMPLETED
-  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+The final sample after data exclusion only includes 150 people. Despite that I used the "full-time employee only" filter on Prolific, there are 20 people who do not fulfill this requirement in my further screening in the questionnaire. For example, over 10 people are self-employed but not employed by a company, some people are part-time employees or unemployed. In the future I should recruit a larger sample to take into account the lack of specificity in Prolific screening. 
 
-#### Differences from pre-data collection methods plan --- TO BE COMPLETED
-  Any differences from what was described as the original plan, or “none”.
+Participants (aged 22-74, with a mean of 44.24) include 81 males, 68 females, and 1 non-binary individual. Their subjective socioeconomic status range from 1 to 9 (1 being the lowest, 10 being the highest), with a mean of 5.513. 
+
+#### Differences from pre-data collection methods plan 
+
+Besides the smaller sample size, everything else was consistent with the original plan.
 
 ## Results
 
@@ -124,7 +133,8 @@ names(psych251data)
 
 #### Data exclusion / filtering
 
-psych251data <- psych251data[-c(1:2),] # Remove first two rows
+psych251data <- psych251data[-c(1:25),] # Remove first two rows meta-data + pilot participants
+nrow(psych251data) # Confirm having 170 participants in the study
 psych251data <- psych251data %>% dplyr::select(ResponseId, Unspecified, Expanded, Age, Gender, Employment, SESLadder) # Select relevant variables (deleting metadata)
 
 # Make sure all data are in an appropriate format 
@@ -138,7 +148,8 @@ psych251data$SESLadder <- as.numeric(psych251data$SESLadder)
 psych251data <- psych251data %>% filter(Employment=="1") %>% filter(Age >= 20 & Age <= 75) # We only want people aged 20-75 who are full-time paid employees.
 summary(psych251data$Age)
 summary(psych251data$Employment)
-
+summary(psych251data$Gender)
+summary(psych251data$SESLadder)
 #### Prepare data for analysis - create columns etc.
 
 # Take a look at the data
@@ -177,7 +188,7 @@ The analyses as specified in the analysis plan.
 ```{r Confirmatory analysis}
 
 # Create binary variable (that indicates whether the participants choose to help others or not) for logistic regression
-psych251data$Help <- recode (psych251data$Choice, "'colleague/friend'=1; 'advance career'=0; 'new direction'=0; else=NA", as.factor = F, as.numeric = T)
+psych251data$Help <- recode(psych251data$Choice, "'colleague/friend'=1; 'advance career'=0; 'new direction'=0; else=NA", as.factor = F, as.numeric = T)
 
 # Main analyses: logistic regression - difference between control and expanded time horizon conditions
 
@@ -195,7 +206,7 @@ psych251data$Condition <- relevel(psych251data$Condition, ref="Expanded")
 glm_diff_expand <- glm(data = psych251data, Help~scale(Age)*Condition, family = "binomial", offset = rep(log_odds_help, length(psych251data$ResponseId)))
 summary(glm_diff_expand) 
 
-# Difference between conditions (age by condition) with control variables (gender + SES)
+# Difference between conditions (age by condition) with control variable: SES
 psych251data$Condition <- relevel(psych251data$Condition, ref="Unspecified")
 glm_diff_unspec_ctl <- glm(data = psych251data, Help~scale(Age)*Condition + scale(SESLadder), family = "binomial", offset = rep(log_odds_help, length(psych251data$ResponseId)))
 summary(glm_diff_unspec_ctl) 
@@ -261,12 +272,26 @@ summary(glm_expand_ctl)
 
 ```
 
-## Discussion --- TO BE COMPLETED
+## Discussion 
 
-### Summary of Replication Attempt --- TO BE COMPLETED
+### Summary of Replication Attempt 
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+We failed to replicate the original result. 
 
-### Commentary --- TO BE COMPLETED
+Exploratory analyses:
 
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
+In the original study, they found that older adults (compared to younger adults) are more likely to help others in the unspecified time horizon condition. In our replication study, we found no age difference in choosing to help others in the unspecified time horizon condition.
+
+The original study also found that when they specify the time horizon to be expanded, age difference in choosing to help others will be eliminated. However, in our replication study, we found that older adults (compared to younger adults) are more likely to help others in the expanded time horizon condition. 
+
+Main analyses: 
+
+The original study found that there is a significant difference between the unspecified and expanded time horizon condition in the age differences in work motivation, such that in the unspecified time horizon condition, older adults would be more likely to choose to help others than younger adults, but in the expanded time horizon condition, both older and younger adults are less likely to choose to help others, and there is no significant age difference. Our replication study found a significant difference, too, but it is in the opposite direction. In the unspecified time horizon condition, both older and younger adults are less likely to help others, but in the expanded time horizon condition, older adults are more likely to help others than younger adults. 
+
+### Commentary
+
+There are some differences between the replication study and the original study. For example, our replication study has only a sample size of 150, and therefore our analyses were under powered, while the original study has a sample of 555. Additionally, our replication could not include as many covariates as the original study did. However, for both my main analyses and exploratory analyses, the original study had significant findings both with and without covariates. Moreover, our replication study made up for a limitation of the original study, which included both full-time and part-time employees. The author of the original study mentioned that part-time employees may lean towards future-oriented goals because they may be more interested in pursuing a full-time job elsewhere, so in the replication study, we only included full-time employees. However, I don't believe that any of these differences between the replication study and the original study would have significantly influenced the results.
+
+Several other explanations for the inconsistency between the original and replication results include: 1. People may have different perceptions of these goals. For example, even though the original study used "helping others" to represent emotionally meaningful goals, to some new employees in a company, helping others may be associated with exploratory goals as it may help them build professional network and thereby facilitate their professional development. 2. Our experimental design may not be completely realistic for the participants. For example, in real life, many employees may not really have the choice of how to spend their time each day at work. Also, there are a lot of other work-related activities while our study design restricts their choices to three activities. These are some possible reasons why the results did not replicate.  
+
+A challenge that I will keep in mind in the future is sample size estimation. Even though Prolific has its own screener, when I used my own screener in Qualtrics survey, I screened out 20 participants (out of 170). In the future I should recruit more participants than the number that my power analysis suggests to buffer any participant loss during screening.
