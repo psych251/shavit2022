@@ -126,8 +126,8 @@ library(dplyr)
 #### Import data
 
 # Load and clean data
-setwd("~/Downloads/Psych251/FinalProject/shavit2022/writeup")
-psych251data <- read.csv("psych251data.csv", header = TRUE)
+#setwd("~/Downloads/Psych251/FinalProject/shavit2022/writeup")
+psych251data <- read.csv("psych251data_choicetext.csv", header = TRUE)
 #View(psych251data)
 names(psych251data)
 
@@ -137,7 +137,27 @@ psych251data <- psych251data[-c(1:25),] # Remove first two rows meta-data + pilo
 nrow(psych251data) # Confirm having 170 participants in the study
 psych251data <- psych251data %>% dplyr::select(ResponseId, Unspecified, Expanded, Age, Gender, Employment, SESLadder) # Select relevant variables (deleting metadata)
 
-# Make sure all data are in an appropriate format 
+#YOCHAI'S ADDITION: RECODE CHOICE FROM NUMBER TO TEXT
+table(psych251data$Unspecified)#- Note: Majority Help colleague/ friend
+
+psych251data$Unspecified=recode(psych251data$Unspecified, "
+        'Help a colleague or friend with a company project'=1; 
+        'Work on a company project that may help you advance your career'=3;
+        'Work on a company project that may lead the company in a new direction'=2
+", as.factor=F, as.numeric=T)
+
+table(psych251data$Unspecified)
+
+table(psych251data$Expanded)#-> Note: MAjority Advance career
+psych251data$Expanded=recode(psych251data$Expanded, "
+        'Help a colleague or friend with a company project'=1; 
+        'Work on a company project that may help you advance your career'=3;
+        'Work on a company project that may lead the company in a new direction'=2
+", as.factor=F, as.numeric=T)
+
+table(psych251data$Expanded)
+
+# Make sure all data are in an appropriate format
 psych251data$Unspecified <- as.numeric(psych251data$Unspecified)
 psych251data$Expanded <- as.numeric(psych251data$Expanded)
 psych251data$Age <- as.numeric(psych251data$Age)
@@ -145,11 +165,17 @@ psych251data$Gender <- factor(psych251data$Gender)
 psych251data$Employment <- factor(psych251data$Employment)
 psych251data$SESLadder <- as.numeric(psych251data$SESLadder)
 
-psych251data <- psych251data %>% filter(Employment=="1") %>% filter(Age >= 20 & Age <= 75) # We only want people aged 20-75 who are full-time paid employees.
+table(psych251data$Employment)
+
+psych251data <- psych251data %>% filter(Employment=="Working - as a full-time paid employee") %>% filter(Age >= 20 & Age <= 75) # We only want people aged 20-75 who are full-time paid employees.
 summary(psych251data$Age)
 summary(psych251data$Employment)
 summary(psych251data$Gender)
 summary(psych251data$SESLadder)
+
+table(psych251data$Unspecified)#-> 41 help, 9 new direction, 27 advance career
+table(psych251data$Expanded)#-> 17 help, 15 new direction, 41 advance career
+
 #### Prepare data for analysis - create columns etc.
 
 # Take a look at the data
@@ -161,24 +187,43 @@ psych251data <- psych251data %>%
     Expanded == 1 | Expanded == 2 | Expanded == 3 ~ "Expanded",
     Unspecified == 1 | Unspecified == 2 | Unspecified == 3 ~ "Unspecified"))
 
+psych251data=psych251data%>%group_by(ResponseId)%>%mutate(Condition2= 
+      ifelse(is.na(Expanded)==F & is.na(Unspecified)==T,'Expanded',
+             ifelse(is.na(Unspecified)==F & is.na(Expanded)==T, 'Unspecified', NA)))%>%ungroup()
+
+psych251data$Condition==psych251data$Condition2 #-> Seems to be no difference between the two ways of creating a 'condition' variable
+
 # Combine participants' answers to time horizon questions into one column called Choice
-psych251data <- gather(psych251data, "Condition", "Choice", c("Unspecified", "Expanded")) %>% filter(!is.na(Choice))
+#psych251data <- gather(psych251data, "Condition", "Choice", c("Unspecified", "Expanded")) %>% filter(!is.na(Choice))
+
+psych251data=psych251data%>%group_by(ResponseId)%>%mutate(Choice=ifelse(Condition=='Expanded', Expanded, ifelse(Condition=='Unspecified', Unspecified, NA)))%>%ungroup()
+
+table(psych251data$Choice, psych251data$Condition)#-> 41 '1' (i.e. 'Help') in Unspecified & 17 '1' in Expanded; 27 '3' (i.e. 'Career') in Unspecified & 41 '3' in Expanded; 9 '2' (i.e 'New direction') in Unspecified & 15 '2' in Expanded. In all: 41 Help and 36 Future oriented in Unspecified; 17 Help and 56 Future oriented in Expanded
 
 # Make sure choice and condition are factors 
-psych251data$Choice <- as.factor(psych251data$Choice)
-psych251data$Choice <- dplyr::recode(psych251data$Choice, '1' = "colleague/friend", '2' = "new direction", '3' = "advance career")
+psych251data$Choice_factor <- as.factor(psych251data$Choice)
+psych251data$Choice_factor <- dplyr::recode(psych251data$Choice, '1' = "colleague/friend", '2' = "new direction", '3' = "advance career")
+
+table(psych251data$Choice_factor, psych251data$Condition)#-> 41 'Colleague/friend' in Unspecified & 17 in Expanded; 27 'Advance career' in Unspecified & 41 in Expanded; 9 'New direction' in Unspecified 15 in Expanded. In all: 41 Help and 36 Future oriented in Unspecified; 17 Help and 56 Future oriented in Expanded
+
 psych251data$Condition=as.factor(psych251data$Condition)
-levels(psych251data$Condition)=c("Unspecified", "Expanded")
+#levels(psych251data$Condition)=c("Unspecified", "Expanded")
+
+table(psych251data$Choice_factor, psych251data$Condition) #-> !!!!!!!!!!!! NOTE (if line 204 is not commented out: NOW THE CONDITION LABELS FLIPPED AND THEY ARE EXACTLY THE OPPOSITE THAN THE VARIABLE CONDITION2 !!!!!!!!!!!!!!! I THINK IT'S DUE TO THE USE OF THE 'LEVELS()' FUNCTION. What I think happened- The value that comes first alphabetically ('Expanded') gets the level that comes first in the function ('Unspecified')
+
+#Compare with
+table(psych251data$Choice_factor, psych251data$Condition2)
 
 # Is there sig diff between the number of people in each condition
 conditiontable=table(psych251data$Condition)
-t.test(conditiontable)
+conditiontable
+t.test(conditiontable)#-> Not sure why t.test here. I think it should be chi-square contingency test
+chisq.test(conditiontable)#-> n.s
 
 # Age, gender, SES diff across conditions
-summary(lm(data = psych251data, Age~Condition))
-summary(table(psych251data$Gender,psych251data$Condition))
-summary(lm(data = psych251data, SESLadder~Condition))
-
+summary(lm(data = psych251data, Age~Condition))#-> Not significant
+summary(table(psych251data$Gender,psych251data$Condition))#-> Not significant
+summary(lm(data = psych251data, SESLadder~Condition))#-> Not significant
 ```
 
 ### Confirmatory analysis
@@ -188,7 +233,9 @@ The analyses as specified in the analysis plan.
 ```{r Confirmatory analysis}
 
 # Create binary variable (that indicates whether the participants choose to help others or not) for logistic regression
-psych251data$Help <- recode(psych251data$Choice, "'colleague/friend'=1; 'advance career'=0; 'new direction'=0; else=NA", as.factor = F, as.numeric = T)
+psych251data$Help <- recode (psych251data$Choice_factor, "'colleague/friend'=1; 'advance career'=0; 'new direction'=0; else=NA", as.factor = F, as.numeric = T)
+
+table(psych251data$Help, psych251data$Condition)#-> 41 'Help' and 36 'Future' in Unspecified, 17 'Help' and 56 'Future' in Expanded
 
 # Main analyses: logistic regression - difference between control and expanded time horizon conditions
 
@@ -198,18 +245,19 @@ log_odds_help = log(p_help/(1-p_help))
 log_odds_help
 
 # Difference between conditions (age by condition) with no control variables
+psych251data$Condition=as.factor(psych251data$Condition)
 psych251data$Condition <- relevel(psych251data$Condition, ref="Unspecified")
 glm_diff_unspec <- glm(data = psych251data, Help~scale(Age)*Condition, family = "binomial", offset = rep(log_odds_help, length(psych251data$ResponseId)))
-summary(glm_diff_unspec) 
+summary(glm_diff_unspec) #-> Note that now there is a positive simple effect of age on the likelihood to choose 'Help' in the unspecified condition (beta= 0.4375, p=0.05) and a strong main effect of condition suggesting the the likelihood of choosing 'Help' (b=-1.36, p<.001) in the expanded condition is lower. The interaction is not significant, but in the expected direction (i.e suggesting that the positive effect of age is reduced in the Expanded condition)
 
 psych251data$Condition <- relevel(psych251data$Condition, ref="Expanded")
 glm_diff_expand <- glm(data = psych251data, Help~scale(Age)*Condition, family = "binomial", offset = rep(log_odds_help, length(psych251data$ResponseId)))
-summary(glm_diff_expand) 
+summary(glm_diff_expand) #-> No effect of age in the Expanded condition (beta= 0.17, p=0.57)
 
 # Difference between conditions (age by condition) with control variable: SES
 psych251data$Condition <- relevel(psych251data$Condition, ref="Unspecified")
 glm_diff_unspec_ctl <- glm(data = psych251data, Help~scale(Age)*Condition + scale(SESLadder), family = "binomial", offset = rep(log_odds_help, length(psych251data$ResponseId)))
-summary(glm_diff_unspec_ctl) 
+summary(glm_diff_unspec_ctl) #-> findings unaffected by the inclusion of gender
 
 psych251data$Condition <- relevel(psych251data$Condition, ref="Expanded")
 glm_diff_expand_ctl <- glm(data = psych251data, Help~scale(Age)*Condition + scale(SESLadder), family = "binomial", offset = rep(log_odds_help, length(psych251data$ResponseId)))
@@ -276,22 +324,20 @@ summary(glm_expand_ctl)
 
 ### Summary of Replication Attempt 
 
-We failed to replicate the original result. 
+We replicated the original result. 
 
 Exploratory analyses:
 
-In the original study, they found that older adults (compared to younger adults) are more likely to help others in the unspecified time horizon condition. In our replication study, we found no age difference in choosing to help others in the unspecified time horizon condition.
-
-The original study also found that when they specify the time horizon to be expanded, age difference in choosing to help others will be eliminated. However, in our replication study, we found that older adults (compared to younger adults) are more likely to help others in the expanded time horizon condition. 
+Like the original study, we found that older adults (compared to younger adults) are more likely to help others in the unspecified time horizon condition. Additionally, when we specify the time horizon to be expanded, age difference in choosing to help others will be eliminated. 
 
 Main analyses: 
 
-The original study found that there is a significant difference between the unspecified and expanded time horizon condition in the age differences in work motivation, such that in the unspecified time horizon condition, older adults would be more likely to choose to help others than younger adults, but in the expanded time horizon condition, both older and younger adults are less likely to choose to help others, and there is no significant age difference. Our replication study found a significant difference, too, but it is in the opposite direction. In the unspecified time horizon condition, both older and younger adults are less likely to help others, but in the expanded time horizon condition, older adults are more likely to help others than younger adults. 
+There is a significant difference between the unspecified and expanded time horizon condition in the age differences in work motivation, such that in the unspecified time horizon condition, older adults would be more likely to choose to help others than younger adults, but in the expanded time horizon condition, both older and younger adults are less likely to choose to help others, and there is no significant age difference. 
 
 ### Commentary
 
-There are some differences between the replication study and the original study. For example, our replication study has only a sample size of 150, and therefore our analyses were under powered, while the original study has a sample of 555. Additionally, our replication could not include as many covariates as the original study did. However, for both my main analyses and exploratory analyses, the original study had significant findings both with and without covariates. Moreover, our replication study made up for a limitation of the original study, which included both full-time and part-time employees. The author of the original study mentioned that part-time employees may lean towards future-oriented goals because they may be more interested in pursuing a full-time job elsewhere, so in the replication study, we only included full-time employees. However, I don't believe that any of these differences between the replication study and the original study would have significantly influenced the results.
+There are some differences between the replication study and the original study. For example, our replication study has only a sample size of 150, and therefore our analyses were under powered, while the original study has a sample of 555. Additionally, our replication could not include as many covariates as the original study did. However, for both my main analyses and exploratory analyses, the original study had significant findings both with and without covariates. Moreover, our replication study made up for a limitation of the original study, which included both full-time and part-time employees. The author of the original study mentioned that part-time employees may lean towards future-oriented goals because they may be more interested in pursuing a full-time job elsewhere, so in the replication study, we only included full-time employees. However, I don't believe that any of these differences between the replication study and the original study would significantly influence the results.
 
-Several other explanations for the inconsistency between the original and replication results include: 1. People may have different perceptions of these goals. For example, even though the original study used "helping others" to represent emotionally meaningful goals, to some new employees in a company, helping others may be associated with exploratory goals as it may help them build professional network and thereby facilitate their professional development. 2. Our experimental design may not be completely realistic for the participants. For example, in real life, many employees may not really have the choice of how to spend their time each day at work. Also, there are a lot of other work-related activities while our study design restricts their choices to three activities. These are some possible reasons why the results did not replicate.  
+Several limitations of both the original and replication results include: 1. People may have different perceptions of these goals. For example, even though the original study used "helping others" to represent emotionally meaningful goals, to some new employees in a company, helping others may be associated with exploratory goals as it may help them build professional network and thereby facilitate their professional development. 2. Our experimental design may not be completely realistic for the participants. For example, in real life, many employees may not really have the choice of how to spend their time each day at work. Also, there are a lot of other work-related activities while our study design restricts their choices to three activities. These are some possible reasons why the results did not replicate.  
 
 A challenge that I will keep in mind in the future is sample size estimation. Even though Prolific has its own screener, when I used my own screener in Qualtrics survey, I screened out 20 participants (out of 170). In the future I should recruit more participants than the number that my power analysis suggests to buffer any participant loss during screening.
